@@ -3,6 +3,8 @@ var fs = require('fs');
 var app = express();
 var projects = require('./routes/projects.js')
 
+app.use(express.static('./static/'));
+
 app.use('/projects', projects);
 
 app.listen(8080, function () {

@@ -1,0 +1,23 @@
+#reguletter_logo {
+	cursor: pointer;
+}
+
+#reguletter_logo:hover {
+	text-shadow: 0 0 5px grey;
+}
+
+.project {
+	width: 100px;
+	border: 1px solid black;
+	text-align: center;
+	margin: 2px;
+	cursor: pointer;
+}
+
+.button:hover {
+	box-shadow: 0 0 5px black;
+}
+
+.button:active {
+	box-shadow: inset 0 0 5px black;
+}
