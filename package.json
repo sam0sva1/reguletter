@@ -1,0 +1,26 @@
+{
+  "name": "reguletter",
+  "version": "1.0.0",
+  "description": "Text editor for writters",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sam0sva1/reguletter.git"
+  },
+  "author": "sam0sva1",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sam0sva1/reguletter/issues"
+  },
+  "homepage": "https://github.com/sam0sva1/reguletter#readme",
+  "devDependencies": {
+    "express": "^4.14.0"
+  },
+  "dependencies": {
+    "asyncawait": "^1.0.6",
+    "fs": "0.0.2"
+  }
+}
