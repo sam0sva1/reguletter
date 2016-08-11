@@ -1,3 +1,5 @@
+'use strict'
+
 function RGL() {
 	var rgl = {};
 
@@ -75,8 +77,7 @@ function RGL() {
 	    		error.code = this.status;
 	    		reject(error);
 	    	}
-	    };	
-	    	console.log(bodyToSend);
+	    };
 			xhr.send(bodyToSend);
 	  });
 	};
@@ -142,7 +143,6 @@ function RGL() {
 	};
 
 	rgl.editPagePieceWrap_ = function(pieceName, text) {
-		console.log('pieceName', pieceName);
 		var pieceElem = document.createElement('span');
 		pieceElem.innerHTML = text;
 		if(pieceName !== 'merge') {
