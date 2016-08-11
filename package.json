@@ -2,9 +2,10 @@
   "name": "reguletter",
   "version": "1.0.0",
   "description": "Text editor for writters",
-  "main": "index.js",
+  "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js && electron ."
   },
   "repository": {
     "type": "git",
