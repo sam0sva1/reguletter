@@ -1,5 +1,6 @@
 var express = require('express');
 var fs = require('fs');
+var bodyParser = require('body-parser');
 var app = express();
 var projects = require('./routes/projects.js')
 

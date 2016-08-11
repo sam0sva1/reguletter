@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "asyncawait": "^1.0.6",
+    "body-parser": "^1.15.2",
     "fs": "0.0.2"
   }
 }

@@ -1,3 +1,45 @@
+
+.head {
+  box-sizing: border-box;
+  width: 100%;
+  height: 80px;
+  margin: 0;
+  padding: 1px;
+  //border-bottom: 1px solid black;
+  box-shadow: 0 0 5px 1px;
+  background-color: white;
+}
+.head h3 {
+  margin: 10px 0 0 20px;
+}
+.head h1 {
+  margin: 0 0 0 20px;
+  font-size: 36px;
+}
+.headTextZoom {
+	font-size: 36px;
+}
+.sidebar {
+	display: none;
+  box-sizing: border-box;
+  position: absolute;
+  top: 80px;
+  bottom: 0;
+  width: 20%;
+  border-right: 1px solid black;
+  overflow: auto;
+}
+.main {
+  box-sizing: border-box;
+  position: absolute;
+  top: 80px;
+  bottom: 0;
+  right: 0;
+  left: 20%;
+  width: 80%;
+  padding: 1%;
+  overflow: auto;
+}
 #reguletter_logo {
 	cursor: pointer;
 }
@@ -14,10 +56,25 @@
 	cursor: pointer;
 }
 
-.button:hover {
+.project_button:hover {
 	box-shadow: 0 0 5px black;
 }
 
-.button:active {
+.project_button:active {
 	box-shadow: inset 0 0 5px black;
+}
+
+.piece_button {
+	cursor: pointer;
+	width: 100%;
+	text-align: center;
+	height: 25px;
+	line-height: 25px;
+}
+.piece_button:hover {
+	outline: 1px solid black;
+	box-shadow: 0 0 2px 2px;
+}
+.contentFullScreen {
+	left: 0;
 }
