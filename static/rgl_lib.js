@@ -38,11 +38,12 @@ function RGL() {
 		return element;
 	};
 
-	rgl.getMet = function(url) {
+	rgl.getMet = function(relativUrl) {
 	  return new Promise( (resolve, reject) => {
 
 	    var XHR = ("onload" in new XMLHttpRequest()) ? XMLHttpRequest : XDomainRequest;
 		var xhr = new XHR();
+		var url = 'http://localhost:8080' + relativUrl;
 
 		xhr.open('GET', url, true);
 
@@ -59,12 +60,13 @@ function RGL() {
 	  });
 	};
 
-	rgl.postMet = function(url, text) {
+	rgl.postMet = function(relativUrl, text) {
 	  return new Promise( (resolve, reject) => {
 
 	    var XHR = ("onload" in new XMLHttpRequest()) ? XMLHttpRequest : XDomainRequest;
 		var xhr = new XHR();
 		var bodyToSend = JSON.stringify({"text": text});
+		var url = 'http://localhost:8080' + relativUrl;
 
 		xhr.open('POST', url, true);
 		xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
