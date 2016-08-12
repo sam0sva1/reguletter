@@ -7,4 +7,4 @@ var sideBar = document.querySelector('.sidebar');
 var m = new Model(); 
 var rgl = new RGL();
 
-rgl.projPageBuilder();
+rgl.projPageBuild();

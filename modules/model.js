@@ -24,12 +24,13 @@ function Model() {
 	  });
 	};
 
-	model.postInfo = function(url, text) {
+	model.postInfo = function(url, object) {
+
 	  return new Promise( (resolve, reject) => {
 
 	    var XHR = ("onload" in new XMLHttpRequest()) ? XMLHttpRequest : XDomainRequest;
 		var xhr = new XHR();
-		var bodyToSend = JSON.stringify({"text": text});
+		var bodyToSend = JSON.stringify(object);
 
 		xhr.open('POST', url, true);
 		xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');

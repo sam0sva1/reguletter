@@ -41,6 +41,12 @@ router.get('/:name/piece/:piece', function(req, res) {
 	res.send(piece);
 });
 
+router.get('/:name/info', function(req, res) {
+	var name = req.params.name;
+	var info = fs.readFileSync(`projects/${name}/main_${name}.rgl`, 'utf8');
+	res.send(info);
+});
+
 router.post('/:name/piece/:piece', jsonParser, function(req, res) {
 	var name = req.params.name;
 	var piece = req.params.piece;
@@ -51,18 +57,20 @@ router.post('/:name/piece/:piece', jsonParser, function(req, res) {
 	res.send(body);
 });
 
-router.get('/:name/create', function(req, res) {
-  	var name = req.params.name;
-	fs.mkdirSync(`projects/${name}`);
+router.post('/create', jsonParser, function(req, res) {	
+	var real_name = req.body.real_name;
+	var work_name = req.body.work_name;
+	fs.mkdirSync(`projects/${work_name}`);
 
-	var abbr = name.substring(0, 3);
-	var data = JSON.stringify({name: `${name}`, text: `|snippet_${abbr}001|`});
+	var abbr = work_name.substring(0, 3);
+	var dataToMainFile = JSON.stringify({real_name: `${real_name}`, work_name: `${work_name}`, text: `|snippet_${abbr}001|`});
+	fs.appendFileSync(`projects/${work_name}/main_${work_name}.rgl`, dataToMainFile);
 
-	fs.appendFileSync(`projects/${name}/main_${name}`, data);
-	fs.appendFileSync(`projects/${name}/${abbr}001.rgl`, '');
-	var result = fs.readFileSync(`projects/${name}/main_${name}`, 'utf8');
-	console.log(result);
-	res.send('Done');
+	var dataTo001 = '>001<';
+	fs.writeFileSync(`projects/${work_name}/${abbr}001.rgl`, dataTo001, 'utf8');
+	var result = fs.readFileSync(`projects/${work_name}/main_${work_name}.rgl`, 'utf8');
+	console.log(`Project was created! Work name: ${work_name}`);
+	//res.send('Done');
 });
 
 module.exports = router;

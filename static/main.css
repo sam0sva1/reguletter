@@ -10,7 +10,6 @@ COMMON
   height: 80px;
   margin: 0;
   padding: 1px;
-  //border-bottom: 1px solid black;
   box-shadow: 0 0 5px 1px;
   background-color: white;
 }
@@ -50,19 +49,28 @@ PROJECT PAGE
 */
 
 
-.project {
+.button {
 	width: 100px;
 	border: 1px solid black;
 	text-align: center;
 	margin: 2px;
 	cursor: pointer;
+  border-radius: 2px;
 }
 
-.project_button:hover {
+.project {
+  width: 100px;
+  border: 1px solid black;
+  text-align: center;
+  margin: 2px;
+  cursor: pointer;
+}
+
+.button:hover {
 	box-shadow: 0 0 5px black;
 }
 
-.project_button:active {
+.button:active {
 	box-shadow: inset 0 0 5px black;
 }
 
@@ -72,6 +80,21 @@ PROJECT PAGE
 .newProjButton {
   margin-top: 2%;
   margin-bottom: 2%;
+}
+
+/*
+====================
+PROJECT PAGE
+====================
+*/
+
+label {
+  display: block;
+  margin: 20px 0 20px 0;
+}
+label input {
+  font-size: 30px;
+  width: 90%;
 }
 
 /*
