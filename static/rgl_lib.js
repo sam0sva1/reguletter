@@ -13,10 +13,29 @@ function RGL() {
 		element.removeEventListener(event, handler);
 	};
 
-	rgl.projPageList = function() {
+	rgl.buildButton = function(inner, class_1, opt_class_2) {
+		var button = document.createElement('div');
+		button.innerHTML = inner;
+		button.classList.add(class_1);
+		if(opt_class_2) {
+			button.classList.add(opt_class_2);
+		}
+		return button;
+	};
+
+	rgl.projPageBuilder = function() {
+		rgl.projPageNewProjButton_();
+		rgl.projPageList_();
+	};
+
+	rgl.projPageNewProjButton_ = function() {
+		main_control.appendChild(rgl.buildButton('New Project', 'project', 'newProjButton'));
+	};
+
+	rgl.projPageList_ = function() {
 		headerProjName.innerHTML = '';
 		main_content.innerHTML = '';
-		rgl.getMet('/projects').then(res => {
+		m.getInfo('/projects').then(res => {
 			let result = JSON.parse(res);
 			result.forEach(item => {
 				var element = rgl.projPageWrapProj(item);
@@ -38,49 +57,7 @@ function RGL() {
 		return element;
 	};
 
-	rgl.getMet = function(url) {
-	  return new Promise( (resolve, reject) => {
-
-	    var XHR = ("onload" in new XMLHttpRequest()) ? XMLHttpRequest : XDomainRequest;
-		var xhr = new XHR();
-
-		xhr.open('GET', url, true);
-
-		xhr.onload = function() {
-	    	if (this.status == 200) {
-	    		resolve(this.responseText);
-	    	} else {
-	    		var error = new Error(this.statusText);
-	    		error.code = this.status;
-	    		reject(error);
-	    	}
-	    };
-			xhr.send();
-	  });
-	};
-
-	rgl.postMet = function(url, text) {
-	  return new Promise( (resolve, reject) => {
-
-	    var XHR = ("onload" in new XMLHttpRequest()) ? XMLHttpRequest : XDomainRequest;
-		var xhr = new XHR();
-		var bodyToSend = JSON.stringify({"text": text});
-
-		xhr.open('POST', url, true);
-		xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
-
-		xhr.onload = function() {
-	    	if (this.status == 200) {
-	    		resolve(this.responseText);
-	    	} else {
-	    		var error = new Error(this.statusText);
-	    		error.code = this.status;
-	    		reject(error);
-	    	}
-	    };
-			xhr.send(bodyToSend);
-	  });
-	};
+	
 
 	rgl.projPageOnNameClickHandler = function(e) {
 		var target = e.target;
@@ -92,7 +69,7 @@ function RGL() {
 
 	rgl.editPageBuild_ = function() {
 		let url = `/projects/${rgl.projName_}/piece/merge`;
-		rgl.getMet(url).then(res => {
+		m.getInfo(url).then(res => {
 			main_content.innerHTML = res;
 			headerProjName.innerHTML = rgl.projName_;
 		});
@@ -105,7 +82,7 @@ function RGL() {
 		main.classList.remove('contentFullScreen');
 		sideBar.style.display = 'block';
 		let url = `/projects/${rgl.projName_}/piece`;
-		rgl.getMet(url).then(res => {
+		m.getInfo(url).then(res => {
 			let result = JSON.parse(res);
 			result.forEach(item => {
 				sideBar.appendChild(rgl.editPagePieceButtonWrap_(item));
@@ -136,7 +113,7 @@ function RGL() {
 
 	rgl.editPagePieceContentRetrieve = function(pieceName) {
 		let url = `/projects/${rgl.projName_}/piece/${pieceName}`;
-		rgl.getMet(url).then(res => {
+		m.getInfo(url).then(res => {
 			var prepearedText = rgl.editPagePieceWrap_(pieceName, res);
 			rgl.editPageScreenFill_(main_content, prepearedText);
 		});
@@ -159,7 +136,7 @@ function RGL() {
 		var pieceName = e.target.dataset.piece;
 		let url = `/projects/${rgl.projName_}/piece/${pieceName}`;
 		var value = e.target.innerHTML;
-		rgl.postMet(url, value);
+		m.postInfo(url, value);
 	};
 
 	rgl.editPageScreenFill_ = function(screen, content) {

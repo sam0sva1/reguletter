@@ -1,3 +1,8 @@
+/*
+====================
+COMMON
+====================
+*/
 
 .head {
   box-sizing: border-box;
@@ -17,17 +22,7 @@
   font-size: 36px;
 }
 .headTextZoom {
-	font-size: 36px;
-}
-.sidebar {
-	display: none;
-  box-sizing: border-box;
-  position: absolute;
-  top: 80px;
-  bottom: 0;
-  width: 20%;
-  border-right: 1px solid black;
-  overflow: auto;
+  font-size: 36px;
 }
 .main {
   box-sizing: border-box;
@@ -41,12 +36,19 @@
   overflow: auto;
 }
 #reguletter_logo {
-	cursor: pointer;
+  cursor: pointer;
 }
 
 #reguletter_logo:hover {
-	text-shadow: 0 0 5px grey;
+  text-shadow: 0 0 5px grey;
 }
+
+/*
+====================
+PROJECT PAGE
+====================
+*/
+
 
 .project {
 	width: 100px;
@@ -64,17 +66,39 @@
 	box-shadow: inset 0 0 5px black;
 }
 
-.piece_button {
-	cursor: pointer;
-	width: 100%;
-	text-align: center;
-	height: 25px;
-	line-height: 25px;
-}
-.piece_button:hover {
-	outline: 1px solid black;
-	box-shadow: 0 0 2px 2px;
-}
 .contentFullScreen {
 	left: 0;
+}
+.newProjButton {
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+
+/*
+====================
+EDIT PAGE
+====================
+*/
+
+.piece_button {
+  cursor: pointer;
+  width: 100%;
+  text-align: center;
+  height: 25px;
+  line-height: 25px;
+}
+.piece_button:hover {
+  outline: 1px solid black;
+  box-shadow: 0 0 2px 2px;
+}
+
+.sidebar {
+  display: none;
+  box-sizing: border-box;
+  position: absolute;
+  top: 80px;
+  bottom: 0;
+  width: 20%;
+  border-right: 1px solid black;
+  overflow: auto;
 }

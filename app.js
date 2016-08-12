@@ -5,6 +5,7 @@ var app = express();
 var projects = require('./routes/projects.js')
 
 app.use(express.static('./static/'));
+app.use(express.static('./modules/'));
 
 app.use('/projects', projects);
 
