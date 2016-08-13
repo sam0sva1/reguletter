@@ -165,6 +165,7 @@ function RGL() {
 		var url = `/projects/${rgl.projName_.work_name}/piece`;
 		m.getInfo(url).then(res => {
 			var result = JSON.parse(res);
+			console.log(result);
 			result.forEach(item => {
 				sideBar.appendChild(rgl.editPagePieceButtonWrap_(item));
 			});

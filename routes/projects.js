@@ -8,8 +8,14 @@ var jsonParser = bodyParser.json();
 
 router.get('/', function(req, res) {
 	var name = req.params.name;
+	var listToSend = [];
 	var listOfProjects = fs.readdirSync(`projects`);
-	res.send(listOfProjects);
+	listOfProjects.forEach((projName, i, arr) => {
+		if(projName.indexOf(".")) {
+			listToSend.push(projName);
+		}
+	});
+	res.send(listToSend);
 });
 
 router.get('/:name/piece', function(req, res) {
@@ -19,7 +25,7 @@ router.get('/:name/piece', function(req, res) {
 	listOfFiles.forEach((fileName, i, arr) => {
 		if(fileName.indexOf("main") === -1) {
 			var sliced = fileName.slice(0, -4);
-			pieceArray[i+1] = sliced;
+			pieceArray.push(sliced);
 		}
 	});
 	res.send(pieceArray);
@@ -71,6 +77,10 @@ router.post('/create', jsonParser, function(req, res) {
 	var result = fs.readFileSync(`projects/${work_name}/main_${work_name}.rgl`, 'utf8');
 	console.log(`Project was created! Work name: ${work_name}`);
 	//res.send('Done');
+});
+
+router.delete('/create', jsonParser, function(req, res) {	
+
 });
 
 module.exports = router;
