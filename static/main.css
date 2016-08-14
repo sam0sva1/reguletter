@@ -32,8 +32,11 @@ COMMON
   right: 0;
   left: 20%;
   width: 80%;
-  padding: 1%;
+  padding: 2%;
   overflow: auto;
+}
+.main_content {
+  text-align: justify;
 }
 #reguletter_logo {
   cursor: pointer;

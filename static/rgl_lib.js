@@ -219,8 +219,8 @@ function RGL() {
 	rgl.editPageSidebarRefresh_ = function() {
 		var url = `/projects/${rgl.projName_.work_name}/piece`;
 		m.getInfo(url).then(res => {
+			sideBar.innerHTML = '';
 			var result = JSON.parse(res);
-			console.log(result);
 			result.forEach(item => {
 				sideBar.appendChild(rgl.editPagePieceButtonWrap_(item));
 			});
@@ -274,6 +274,7 @@ function RGL() {
 		var value = e.target.innerHTML;
 		var objectToSend = {"text": `${value}`}
 		m.postInfo(url, objectToSend);
+		rgl.editPageSidebarRefresh_();
 	};
 
 	rgl.editPageScreenFill_ = function(screen, content) {

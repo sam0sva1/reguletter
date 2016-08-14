@@ -3,6 +3,7 @@ var fs = require('fs');
 var bodyParser = require('body-parser');
 var router = express.Router();
 var concat = require('../modules/concat.js');
+var finder = require('../modules/finder.js');
 
 var jsonParser = bodyParser.json();
 
@@ -58,10 +59,13 @@ router.post('/:name/piece/:piece', jsonParser, function(req, res) {
 	var piece = req.params.piece;
 	var text = req.body.text;
 
+	var path = `projects/${name}`;
+	finder(path, text);
+
 	fs.writeFileSync(`projects/${name}/${piece}.rgl`, text, 'utf8');
 
 	var body = fs.readFileSync(`projects/${name}/${piece}.rgl`, 'utf8');
-	res.send(body);
+	res.send('Snippet saved.');
 });
 
 router.post('/create', jsonParser, function(req, res) {	

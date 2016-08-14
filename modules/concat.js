@@ -1,16 +1,19 @@
 var fs = require('fs');
+var finder = require('./finder.js');
 
 var concat = function(snippet, path) {
   var text = snippet;
-  var reg = /\@\S+\@/;
+  finder(path, text);
+
+  var regEx = /\@\S+\@/;
 	do {
-    var matching = text.match(reg);
+    var matching = text.match(regEx);
     if(matching){
       var keyWord = matching[0].slice(1, -1);
-      var partToPass = concat(fs.readFileSync(`${path}/${keyWord}.rgl`, 'utf8'), path);
+      var episode = fs.readFileSync(`${path}/${keyWord}.rgl`, 'utf8');
+      var partToPass = concat(episode, path);
       var fullPiece = `<span id="${keyWord}" class="piece">${partToPass}</span>`;
       text = text.replace(matching, fullPiece);
-
     }
 	} while (matching);
   return text;
