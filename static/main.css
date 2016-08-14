@@ -17,6 +17,7 @@ COMMON
   margin: 10px 0 0 20px;
 }
 .head h1 {
+  display: inline-block;
   margin: 0 0 0 20px;
   font-size: 36px;
 }
@@ -40,6 +41,15 @@ COMMON
 
 #reguletter_logo:hover {
   text-shadow: 0 0 5px grey;
+}
+.head_control {
+  display: inline-block;
+  margin: auto;
+  float: right;
+  padding-top: 10px;
+  padding-right: 10px;
+}
+.head_button {
 }
 
 /*
@@ -84,7 +94,7 @@ PROJECT PAGE
 
 /*
 ====================
-PROJECT PAGE
+NEW PROJECT PAGE
 ====================
 */
 
@@ -124,4 +134,60 @@ EDIT PAGE
   width: 20%;
   border-right: 1px solid black;
   overflow: auto;
+}
+
+/*
+====================
+EDIT PAGE DEL BUTTON
+====================
+*/
+
+.wrapper {
+  text-align: center;
+  line-height: 20px;
+  font-size: 15px;
+  position: relative;
+  width: 80px;
+  height: 20px;
+}
+.warning {
+  cursor: pointer;
+  z-index: 20;
+  position: absolute;
+  border: 1px solid black;
+  border-radius: 2px;
+  width: 80px;
+  height: 20px;
+  background-color: white;
+}
+.finalDel {
+  cursor: pointer;
+  z-index: 10;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  margin: 0 auto;
+  border: 1px solid black;
+  border-radius: 0 2px 2px 0;
+  width: 60px;
+  height: 20px;
+  background-color: #FBB2B2;
+}
+.deleteButtonWarningAnime {
+  transition-property: box-shadow;
+  transition-duration: 0.5s;
+  transition-delay: 0.2s;
+  box-shadow: 0 0 10px 1px;
+}
+.deleteButtonFinalDelAnime {
+  transition-property: top, box-shadow;
+  transition-duration: 1s;
+  transition-delay: 0.7s;
+  top: 20px;
+  box-shadow: 0 0 5px;
+}
+/*=====================================================*/
+.hide {
+  display: none;
 }

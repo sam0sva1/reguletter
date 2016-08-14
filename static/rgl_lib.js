@@ -93,6 +93,7 @@ function RGL() {
 		headerProjName.innerHTML = '';
 		main_control.innerHTML = '';
 		main_content.innerHTML = '';
+		rgl.editPageDeleteButtonDestroy_();
 	};
 
 	rgl.projPageNewProjButtonDestroy_ = function() {
@@ -139,11 +140,65 @@ function RGL() {
 	};
 
 	rgl.editPageBuild_ = function() {
-		rgl.projPageDestroy();		
+		rgl.projPageDestroy();
+		rgl.editPageDeleteButtonBuild_();
 		rgl.editPageFullTextConcat_();
 		rgl.editPageSidebarBuild_();
 		rgl.lstn(home, 'click', rgl.projPageBuild);
 	};
+
+//DELETE BUTTON SECTION START
+	rgl.editPageDeleteButtonBuild_ = function() {
+		rgl.lstn(header, 'mouseenter', rgl.editPageDelButShow);
+		rgl.lstn(header, 'mouseleave', rgl.editPageDelButHide);
+		delBut_wrapper.onclick = rgl.editPageOnDelButClickHandler;
+	};
+
+	rgl.editPageOnDelButClickHandler = function() {
+		delBut_warning.innerHTML = 'ТОЧНО?';
+  		delBut_warning.classList.add('deleteButtonWarningAnime');
+  		delBut_finBut.classList.add('deleteButtonFinalDelAnime');
+  		delBut_wrapper.onclick = '';
+  
+  		delBut_finBut.addEventListener('transitionend', function(){
+    		delBut_finBut.onclick = function() {
+      		rgl.editPageFinalProjectDelete();
+      		delBut_warning.innerHTML = 'Удалить';
+    		};
+    		window.onclick = rgl.editPageOnAnythinkClickHandler;
+  		});
+	};
+
+	rgl.editPageOnAnythinkClickHandler = function() {
+		delBut_warning.innerHTML = 'Удалить';
+      	delBut_finBut.classList.remove('deleteButtonFinalDelAnime');
+      	delBut_warning.classList.remove('deleteButtonWarningAnime');
+      	delBut_wrapper.onclick = rgl.editPageOnDelButClickHandler;
+		window.onclick = '';
+	};
+
+	rgl.editPageFinalProjectDelete = function() {
+		var url = `/projects/delete`;
+		var objectToSend = rgl.projName_;
+		m.delInfo(url, objectToSend).then(res => console.log(res));
+		rgl.projPageBuild();
+	};
+
+	rgl.editPageDelButShow = function() {
+		delBut_wrapper.classList.remove('hide');
+	};
+
+	rgl.editPageDelButHide = function() {
+		delBut_wrapper.classList.add('hide');
+		rgl.editPageOnAnythinkClickHandler();
+	};
+
+	rgl.editPageDeleteButtonDestroy_ = function() {
+		rgl.unlstn(header, 'mouseenter', rgl.editPageDelButShow);
+		rgl.unlstn(header, 'mouseleave', rgl.editPageDelButHide);
+		delBut_wrapper.classList.add('hide');
+	};
+//DELETE BUTTON SECTION END
 
 	rgl.editPageFullTextConcat_ = function() {
 		main_content.innerHTML = '';

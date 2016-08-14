@@ -2,13 +2,13 @@ var fs = require('fs');
 
 var concat = function(snippet, path) {
   var text = snippet;
-  var reg = /\|snippet_[\w]*\|/;
+  var reg = /\@\S+\@/;
 	do {
     var matching = text.match(reg);
     if(matching){
-      var keyWord = matching[0].substr(9, 6);
+      var keyWord = matching[0].slice(1, -1);
       var partToPass = concat(fs.readFileSync(`${path}/${keyWord}.rgl`, 'utf8'), path);
-      var fullPiece = `<span class="${keyWord} piece">${partToPass}</span>`;
+      var fullPiece = `<span id="${keyWord}" class="piece">${partToPass}</span>`;
       text = text.replace(matching, fullPiece);
 
     }
