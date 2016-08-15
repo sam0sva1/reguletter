@@ -251,6 +251,7 @@ function RGL() {
 		var url = `/projects/${rgl.projName_.work_name}/piece/${pieceName}`;
 		m.getInfo(url).then(res => {
 			var prepearedText = rgl.editPagePieceWrap_(pieceName, res);
+			main_control.innerHTML = pieceName;
 			rgl.editPageScreenFill_(main_content, prepearedText);
 		});
 	};
