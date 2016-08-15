@@ -2,7 +2,7 @@ var fs = require('fs');
 
 var findName = function (path, text) {
 	var listOfFiles = fs.readdirSync(path);
-	var regEx = /\|\@\S+\@\|/g;
+	var regEx = /\|\@\S+[^\n\|]\@\|/g;
     var matching = text.match(regEx);
     if(matching) {
     	matching.forEach(snippetName => {

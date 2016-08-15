@@ -74,7 +74,7 @@ router.post('/create', jsonParser, function(req, res) {
 	fs.mkdirSync(`projects/${work_name}`);
 
 	var abbr = work_name.substring(0, 3);
-	var dataToMainFile = JSON.stringify({real_name: `${real_name}`, work_name: `${work_name}`, text: `@${abbr}001@`});
+	var dataToMainFile = JSON.stringify({real_name: `${real_name}`, work_name: `${work_name}`, text: `|@${abbr}001@|`});
 	fs.appendFileSync(`projects/${work_name}/main_${work_name}.rgl`, dataToMainFile);
 
 	var dataTo001 = '>001<';

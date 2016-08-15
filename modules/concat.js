@@ -5,7 +5,7 @@ var concat = function(snippet, path) {
   var text = snippet;
   finder(path, text);
 
-  var regEx = /\|\@\S+\@\|/;
+  var regEx = /\|\@\S+[^\n\|]\@\|/;
 	do {
     var matching = text.match(regEx);
     if(matching){
