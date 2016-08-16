@@ -9,7 +9,7 @@ function Model() {
 	    var XHR = ("onload" in new XMLHttpRequest()) ? XMLHttpRequest : XDomainRequest;
 		var xhr = new XHR();
 
-		xhr.open('GET', `http://192.168.1.39:8080${url}`, true);
+		xhr.open('GET', url, true);
 
 		xhr.onload = function() {
 	    	if (this.status == 200) {
@@ -32,7 +32,7 @@ function Model() {
 		var xhr = new XHR();
 		var bodyToSend = JSON.stringify(object);
 
-		xhr.open('POST', `http://192.168.1.39:8080${url}`, true);
+		xhr.open('POST', url, true);
 		xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
 
 		xhr.onload = function() {
@@ -56,7 +56,7 @@ function Model() {
 		var xhr = new XHR();
 		var bodyToSend = JSON.stringify(object);
 
-		xhr.open('DELETE', `http://192.168.1.39:8080${url}`, true);
+		xhr.open('DELETE', url, true);
 		xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
 
 		xhr.onload = function() {

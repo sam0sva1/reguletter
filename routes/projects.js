@@ -42,6 +42,14 @@ router.get('/:name/piece/merge', function(req, res) {
 	res.send(fullText);
 });
 
+router.delete('/:name/piece/delete', jsonParser, function(req, res) {
+	var piceName = req.body.pieceName;
+	var listOfFiles = fs.readdirSync(`projects/${work_name}`);
+	listOfFiles.forEach(item => {
+
+	});
+});
+
 router.get('/:name/piece/:piece', function(req, res) {
 	var params = req.params;
 	var piece = fs.readFileSync(`projects/${params.name}/${params.piece}.rgl`, 'utf8');
@@ -60,7 +68,7 @@ router.post('/:name/piece/:piece', jsonParser, function(req, res) {
 	var text = req.body.text;
 
 	var path = `projects/${name}`;
-	finder(path, text);
+	finder.toCreate(path, text);
 
 	fs.writeFileSync(`projects/${name}/${piece}.rgl`, text, 'utf8');
 

@@ -1,6 +1,8 @@
 var fs = require('fs');
 
-var findName = function (path, text) {
+var finder = {};
+
+finder.toCreate = function (path, text) {
 	var listOfFiles = fs.readdirSync(path);
 	var regEx = /\|\@\S+[^\n\|]\@\|/g;
     var matching = text.match(regEx);
@@ -16,4 +18,8 @@ var findName = function (path, text) {
     }
 };
 
-module.exports = findName;
+finder.toDelete = function() {
+	
+}
+
+module.exports = finder;

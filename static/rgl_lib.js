@@ -251,10 +251,16 @@ function RGL() {
 		var url = `/projects/${rgl.projName_.work_name}/piece/${pieceName}`;
 		m.getInfo(url).then(res => {
 			var prepearedText = rgl.editPagePieceWrap_(pieceName, res);
-			main_control.innerHTML = pieceName;
+			main_control.innerHTML = (pieceName !== 'merge') ? `<span>${pieceName}</span>` : `<span>Компазит</span>`;
+			rgl.editPagePieceDelButBuild();
 			rgl.editPageScreenFill_(main_content, prepearedText);
 		});
 	};
+
+	rgl.editPagePieceDelButBuild = function() {
+		var pieceDelBut = rgl.buildButton('Удалить', 'button', 'pieceDelBut');
+		main_control.appendChild(pieceDelBut);
+	}
 
 	rgl.editPagePieceWrap_ = function(pieceName, text) {
 		var pieceElem = document.createElement('span');
