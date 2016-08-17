@@ -4,7 +4,7 @@ var finder = {};
 
 finder.toCreate = function (path, text) {
 	var listOfFiles = fs.readdirSync(path);
-	var regEx = /\|\@\S+[^\n\|]\@\|/g;
+	var regEx = /\|@[\wа-яА-Я]+@\|/g;
     var matching = text.match(regEx);
     if(matching) {
     	matching.forEach(snippetName => {
@@ -20,6 +20,6 @@ finder.toCreate = function (path, text) {
 
 finder.toDelete = function() {
 	
-}
+};
 
 module.exports = finder;

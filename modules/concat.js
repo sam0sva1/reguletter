@@ -3,9 +3,9 @@ var finder = require('./finder.js');
 
 var concat = function(snippet, path) {
   var text = snippet;
-  finder(path, text);
+  finder.toCreate(path, text);
 
-  var regEx = /\|\@\S+[^\n\|]\@\|/;
+  var regEx = /\|@[\wа-яА-Я]+@\|/;
 	do {
     var matching = text.match(regEx);
     if(matching){

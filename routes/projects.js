@@ -43,11 +43,17 @@ router.get('/:name/piece/merge', function(req, res) {
 });
 
 router.delete('/:name/piece/delete', jsonParser, function(req, res) {
-	var piceName = req.body.pieceName;
+	var work_name = req.params.name;
+	var pieceName = req.body.pieceName;
+	var expr = new RegExp(`\\|@${pieceName}@\\|`);
 	var listOfFiles = fs.readdirSync(`projects/${work_name}`);
 	listOfFiles.forEach(item => {
-
+		var text = fs.readFileSync(`projects/${work_name}/${item}`, 'utf8');
+		var TextToInsert = text.replace(expr, '');
+		fs.writeFileSync(`projects/${work_name}/${item}`, TextToInsert, 'utf8');
 	});
+	fs.unlinkSync(`projects/${work_name}/${pieceName}.rgl`);
+	res.send(pieceName + ' УДАЛЕНА');
 });
 
 router.get('/:name/piece/:piece', function(req, res) {

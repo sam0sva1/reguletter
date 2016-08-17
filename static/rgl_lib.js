@@ -251,16 +251,34 @@ function RGL() {
 		var url = `/projects/${rgl.projName_.work_name}/piece/${pieceName}`;
 		m.getInfo(url).then(res => {
 			var prepearedText = rgl.editPagePieceWrap_(pieceName, res);
-			main_control.innerHTML = (pieceName !== 'merge') ? `<span>${pieceName}</span>` : `<span>Компазит</span>`;
-			rgl.editPagePieceDelButBuild();
+			if(pieceName !== 'merge') {
+				main_control.innerHTML = `<span id='nameOfPiece'>${pieceName}</span>`;
+				rgl.editPagePieceDelButBuild();
+			} else {
+				main_control.innerHTML = 'Компазит';
+			}
 			rgl.editPageScreenFill_(main_content, prepearedText);
 		});
 	};
 
 	rgl.editPagePieceDelButBuild = function() {
 		var pieceDelBut = rgl.buildButton('Удалить', 'button', 'pieceDelBut');
+		rgl.lstn(pieceDelBut, 'click', rgl.editPageOnPieceDelButClickHandler);
 		main_control.appendChild(pieceDelBut);
-	}
+	};
+
+	rgl.editPageOnPieceDelButClickHandler = function() {
+		var nameOfPiece = main_control.querySelector('#nameOfPiece').textContent;
+		console.log(`Удаляем ${nameOfPiece}`);
+
+		var url = `/projects/${rgl.projName_.work_name}/piece/delete`;
+		var objectToSend = {"pieceName": nameOfPiece};
+		m.delInfo(url, objectToSend).then(res => {
+			console.log(res);
+			rgl.editPageSidebarRefresh_();
+		});
+
+	};
 
 	rgl.editPagePieceWrap_ = function(pieceName, text) {
 		var pieceElem = document.createElement('span');
@@ -278,8 +296,9 @@ function RGL() {
 	rgl.editPageOnTextBlurHandler = function(e) {
 		var pieceName = e.target.dataset.piece;
 		var url = `/projects/${rgl.projName_.work_name}/piece/${pieceName}`;
-		var value = e.target.innerHTML;
-		var objectToSend = {"text": `${value}`}
+		var value = e.target.textContent;
+
+		var objectToSend = {"text": `${value}`};
 		m.postInfo(url, objectToSend);
 		rgl.editPageSidebarRefresh_();
 	};
