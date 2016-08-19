@@ -296,7 +296,7 @@ function RGL() {
 	rgl.editPageOnTextBlurHandler = function(e) {
 		var pieceName = e.target.dataset.piece;
 		var url = `/projects/${rgl.projName_.work_name}/piece/${pieceName}`;
-		var value = e.target.textContent;
+		var value = e.target.innerHTML;
 
 		var objectToSend = {"text": `${value}`};
 		m.postInfo(url, objectToSend);

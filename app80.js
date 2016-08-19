@@ -17,6 +17,6 @@ app.use(express.static('./modules/'));
 
 app.use('/projects', projects);
 
-app.listen(3000, function () {
-  console.log('App runs on 3000.');
+app.listen(80, function () {
+  console.log('App runs on 80.');
 });
