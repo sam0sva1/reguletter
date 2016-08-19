@@ -4,7 +4,7 @@ function Model() {
 	var model = {};
 
 	model.getInfo = function(url) {
-	  return new Promise( (resolve, reject) => {
+	  return new Promise(function(resolve, reject) {
 
 	    var XHR = ("onload" in new XMLHttpRequest()) ? XMLHttpRequest : XDomainRequest;
 		var xhr = new XHR();
@@ -26,7 +26,7 @@ function Model() {
 
 	model.postInfo = function(url, object) {
 
-	  return new Promise( (resolve, reject) => {
+	  return new Promise(function(resolve, reject) {
 
 	    var XHR = ("onload" in new XMLHttpRequest()) ? XMLHttpRequest : XDomainRequest;
 		var xhr = new XHR();
@@ -50,7 +50,7 @@ function Model() {
 
 	model.delInfo = function(url, object) {
 
-	  return new Promise( (resolve, reject) => {
+	  return new Promise(function(resolve, reject) {
 
 	    var XHR = ("onload" in new XMLHttpRequest()) ? XMLHttpRequest : XDomainRequest;
 		var xhr = new XHR();
